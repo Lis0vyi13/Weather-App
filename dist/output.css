@@ -661,6 +661,10 @@ video {
   overflow: hidden;
 }
 
+.overflow-y-hidden {
+  overflow-y: hidden;
+}
+
 .whitespace-nowrap {
   white-space: nowrap;
 }
@@ -880,10 +884,6 @@ video {
 @media (min-width: 1px) {
   .min-\[1px\]\:mb-8 {
     margin-bottom: 2rem;
-  }
-
-  .min-\[1px\]\:mt-2 {
-    margin-top: 0.5rem;
   }
 
   .min-\[1px\]\:mt-4 {
