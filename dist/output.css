@@ -613,18 +613,6 @@ video {
   display: inline-flex;
 }
 
-.min-h-\[2000px\] {
-  min-height: 2000px;
-}
-
-.min-w-\[100vh\] {
-  min-width: 100vh;
-}
-
-.min-w-\[2000px\] {
-  min-width: 2000px;
-}
-
 .max-w-screen-xl {
   max-width: 1280px;
 }
@@ -716,18 +704,6 @@ video {
 .py-\[20px\] {
   padding-top: 20px;
   padding-bottom: 20px;
-}
-
-.pb-\[200px\] {
-  padding-bottom: 200px;
-}
-
-.pb-\[20px\] {
-  padding-bottom: 20px;
-}
-
-.pb-\[40px\] {
-  padding-bottom: 40px;
 }
 
 .pb-\[10px\] {
@@ -836,6 +812,54 @@ video {
 
 .active-card h3 {
   font-size: 60px;
+}
+
+#loaderContainer {
+  height: 100vh;
+  width: 100vw;
+  transition: all .5s;
+  background: radial-gradient(circle, 
+  #856957 0%, #31414e 100%);
+  position: absolute;
+  z-index: 100000;
+  left: 0;
+  top: 0;
+  display: grid;
+  align-content: center;
+  justify-content: center;
+}
+
+#loaderGif {
+  height: 42px;
+  width: 42px;
+  border-radius: 50%;
+  border: 2px solid #ffffff;
+  border-top: 5px dashed;
+  border-bottom: 0;
+  border-color: bisque;
+  animation: loaderOut 2s linear infinite;
+}
+
+@keyframes loaderOut {
+  0% {
+    transform: rotate(0);
+  }
+
+  25% {
+    transform: rotate(-45deg);
+  }
+
+  50% {
+    transform: rotate(0);
+  }
+
+  75% {
+    transform: rotate(45deg);
+  }
+
+  100% {
+    transform: rotate(0);
+  }
 }
 
 .hover\:bg-white:hover {

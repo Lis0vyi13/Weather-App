@@ -4,6 +4,12 @@ let cards = document.querySelectorAll(".card");
 let cardsBlock = document.querySelector(".cards");
 let cardWidth = cards[1].offsetWidth;
 let gap = 32;
+let preloader = document.querySelector("#loaderContainer");
+
+window.onload = function () {
+  preloader.style.opacity = 0;
+  preloader.style.pointerEvents = "none";
+};
 
 async function getData() {
   const request = await fetch(
