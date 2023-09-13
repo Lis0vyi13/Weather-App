@@ -786,7 +786,8 @@ video {
   background-attachment: fixed;
   background-position: center center;
   color: #fff;
-  min-height: 100vh;
+  height: 100vh;
+  overflow-y: hidden;
 }
 
 .wrapper::after {
