@@ -597,10 +597,6 @@ video {
   margin-top: 0.25rem;
 }
 
-.mt-10 {
-  margin-top: 2.5rem;
-}
-
 .mt-2 {
   margin-top: 0.5rem;
 }
@@ -629,10 +625,6 @@ video {
   display: inline-flex;
 }
 
-.hidden {
-  display: none;
-}
-
 .max-w-screen-xl {
   max-width: 1280px;
 }
@@ -659,10 +651,6 @@ video {
 
 .gap-3 {
   gap: 0.75rem;
-}
-
-.gap-5 {
-  gap: 1.25rem;
 }
 
 .gap-y-1 {
@@ -702,16 +690,8 @@ video {
   --tw-bg-opacity: 0.2;
 }
 
-.bg-opacity-5 {
-  --tw-bg-opacity: 0.05;
-}
-
 .p-2 {
   padding: 0.5rem;
-}
-
-.p-\[15px\] {
-  padding: 15px;
 }
 
 .px-4 {
@@ -724,35 +704,12 @@ video {
   padding-bottom: 0.5rem;
 }
 
-.px-3 {
-  padding-left: 0.75rem;
-  padding-right: 0.75rem;
-}
-
-.px-\[14px\] {
-  padding-left: 14px;
-  padding-right: 14px;
-}
-
 .pb-\[10px\] {
   padding-bottom: 10px;
 }
 
-.pl-\[14px\] {
-  padding-left: 14px;
-}
-
-.pl-\[16px\] {
-  padding-left: 16px;
-}
-
 .text-\[12px\] {
   font-size: 12px;
-}
-
-.text-xs {
-  font-size: 0.75rem;
-  line-height: 1rem;
 }
 
 .font-bold {
@@ -865,6 +822,19 @@ body::after {
   z-index: 3;
 }
 
+.card {
+  margin-top: 40px;
+}
+
+.card div {
+  padding: 15px;
+  gap: 20px;
+}
+
+.card div #hour {
+  font-size: 12px;
+}
+
 .active-card {
   box-shadow: rgba(0, 0, 0, 0.5) 0px 0px 15px;
   margin: 40px 10px 0 15px;
@@ -879,10 +849,22 @@ body::after {
     font-size: 12px;
   }
 
-  .active-card #temperature {
-    font-weight: bold;
+  .card div #temperature {
+    font-size: 26px;
+  }
+
+  .active-card div #temperature {
     font-size: 36px;
-    margin-top: 32px;
+    margin-top: 16px;
+    font-weight: bold;
+  }
+
+  .card {
+    min-width: 100px;
+  }
+
+  .active-card {
+    min-width: 140px;
   }
 }
 
@@ -892,8 +874,20 @@ body::after {
     margin-top: 8px;
   }
 
-  .active-card #temperature {
+  .card div #temperature {
+    font-size: 30px;
+  }
+
+  .card {
+    min-width: 111px;
+  }
+
+  .active-card div #temperature {
     font-size: 48px;
+  }
+
+  .active-card {
+    min-width: 179px;
   }
 }
 
@@ -908,6 +902,11 @@ body::after {
 
 .search-button:hover svg path {
   stroke: #fff;
+}
+
+.show {
+  opacity: 1;
+  pointer-events: all;
 }
 
 #loaderContainer {
@@ -1021,11 +1020,6 @@ body::after {
     gap: 2rem;
   }
 
-  .min-\[1px\]\:text-2xl {
-    font-size: 1.5rem;
-    line-height: 2rem;
-  }
-
   .min-\[1px\]\:text-4xl {
     font-size: 2.25rem;
     line-height: 2.5rem;
@@ -1064,8 +1058,8 @@ body::after {
     margin-top: 2rem;
   }
 
-  .min-\[400px\]\:mt-\[42px\] {
-    margin-top: 42px;
+  .min-\[400px\]\:mt-\[32px\] {
+    margin-top: 32px;
   }
 
   .min-\[400px\]\:text-\[13px\] {
@@ -1150,6 +1144,10 @@ body::after {
 }
 
 @media (min-width: 670px) {
+  .min-\[670px\]\:mt-\[42px\] {
+    margin-top: 42px;
+  }
+
   .min-\[670px\]\:w-\[unset\] {
     width: unset;
   }
@@ -1172,19 +1170,6 @@ body::after {
 
   .min-\[670px\]\:pl-\[55px\] {
     padding-left: 55px;
-  }
-
-  .min-\[670px\]\:text-3xl {
-    font-size: 1.875rem;
-    line-height: 2.25rem;
-  }
-
-  .min-\[670px\]\:text-\[16px\] {
-    font-size: 16px;
-  }
-
-  .min-\[670px\]\:text-\[19px\] {
-    font-size: 19px;
   }
 
   .min-\[670px\]\:text-\[18px\] {

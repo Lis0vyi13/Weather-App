@@ -57,7 +57,7 @@
             >
               28 °C
             </h1>
-            <a id="change-location" href="#" class="link flex gap-1 mt-5 hover:underline"
+            <a id="change-location" href="#" class="link inline-flex gap-1 mt-5 hover:underline"
               ><img src="icons/location.svg" alt="#" width="16px" height="16px" />
               <p class="min-[1px]:text-[12px] min-[450px]:text-[14px]">Change Location</p></a
             >
@@ -93,7 +93,11 @@
                 </svg>
               </button>
             </div>
-            <p class="mt-2 text-red-600 error text-[12px] hidden">Invalid city name</p>
+            <p
+              class="mt-2 text-red-600 error text-[12px] opacity-0 pointer-events-none duration-300"
+            >
+              Invalid city name
+            </p>
           </section>
           <section class="flex flex-col gap-10 mt-7">
             <div class="option flex gap-3">
@@ -182,10 +186,10 @@
           ></section>
 
           <div
-            class="buttons flex self-center min-[1px]:gap-8 min-[1px]:mt-[15px] min-[400px]:mt-[42px] min-[670px]:gap-5 min-[670px]:pl-[55px]"
+            class="buttons flex self-center min-[1px]:gap-8 min-[1px]:mt-[15px] min-[400px]:mt-[32px] min-[670px]:gap-5 min-[670px]:mt-[42px] min-[670px]:pl-[55px]"
           >
             <div
-              id="button-left"
+              id="button-left "
               class="cursor-pointer bg-white bg-opacity-20 rounded-[50%] px-4 py-2 hover:bg-white hover:text-black duration-300 transition-all"
             >
               &lt;
@@ -200,7 +204,7 @@
         </main>
       </div>
     </div>
-    <div id="loaderContainer">
+    <div class="opacity-0 pointer-events-none show" id="loaderContainer">
       <div id="loaderGif"></div>
     </div>
     <script src="js/script.js"></script>
