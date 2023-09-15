@@ -7,8 +7,8 @@
     <link rel="stylesheet" href="dist/output.css" />
   </head>
   <body>
-    <div class="wrapper overflow-y-hidden">
-      <div class="container max-w-screen-xl mx-auto overflow-hidden px-4">
+    <div class="wrapper">
+      <div class="container max-w-screen-xl mx-auto overflow-x-hidden px-4">
         <aside
           class="min-[1px]:mt-4 min-[400px]:mt-8 gap-10 flex justify-between min-[1px]:mb-8 min-[500px]:mb-0"
         >
@@ -39,25 +39,61 @@
                 </g>
               </g>
             </svg>
-            <h2 id="weather" class="min-[1px]:text-xl min-[450px]:text-2xl min-[570px]:text-4xl">
+            <h2
+              id="weather"
+              class="capitalize min-[1px]:text-xl min-[450px]:text-2xl min-[570px]:text-4xl"
+            >
               Fog
             </h2>
             <h3
               id="city"
               class="min-[1px]:text-[15px] min-[450px]:text-[17px] min-[570px]:text-[19px] mt-1"
             >
-              Khulna City
+              Poltava
             </h3>
             <h1
-              id="temperature"
+              id="current-temperature"
               class="min-[1px]:text-4xl min-[450px]:text-5xl min-[570px]:text-6xl font-bold mt-5"
             >
               28 °C
             </h1>
-            <a href="#" class="link flex gap-1 mt-5 hover:underline"
+            <a id="change-location" href="#" class="link flex gap-1 mt-5 hover:underline"
               ><img src="icons/location.svg" alt="#" width="16px" height="16px" />
               <p class="min-[1px]:text-[12px] min-[450px]:text-[14px]">Change Location</p></a
             >
+            <div class="search duration-300 flex mt-2 opacity-0 pointer-events-none">
+              <input
+                class="min-[1px]:w-[127px] min-[670px]:w-[unset] search-input box-border outline-none p-2 rounded-md text-black text-[12px] placeholder:text-[12px]"
+                placeholder="City name..."
+              />
+              <button
+                class="search-button duration-300 p-2 bg-white rounded-md ml-[-20px] hover:bg-black"
+              >
+                <svg
+                  class="duration-300"
+                  width="20px"
+                  height="20px"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <g id="SVGRepo_bgCarrier" stroke-width="0" />
+
+                  <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round" />
+
+                  <g id="SVGRepo_iconCarrier">
+                    <path
+                      d="M15.7955 15.8111L21 21M18 10.5C18 14.6421 14.6421 18 10.5 18C6.35786 18 3 14.6421 3 10.5C3 6.35786 6.35786 3 10.5 3C14.6421 3 18 6.35786 18 10.5Z"
+                      stroke="#000000"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                  </g>
+                </svg>
+              </button>
+            </div>
+            <p class="mt-2 text-red-600 error text-[12px] hidden">Invalid city name</p>
           </section>
           <section class="flex flex-col gap-10 mt-7">
             <div class="option flex gap-3">
@@ -133,83 +169,20 @@
           </section>
         </aside>
         <p class="inline-flex self-top cursor-pointer hover:underline">
-          <img src="icons/arrow-left.svg" height="22" width="22" alt="#" />
-          <span id="prev-day">Thursday</span>
+          <span class="min-[1px]:text-[14px] min-[670px]:text-[18px] font-bold" id="day"
+            >Thursday</span
+          >
         </p>
 
         <main
           class="flex min-[300px]:items-center min-[1px]:flex-col min-[1px]:justify-center min-[670px]:flex-row min-[670px]:justify-between"
         >
           <section
-            class="pb-[10px] cards min-[1px]:max-w-[300px] min-[440px]:max-w-[440px] min-[470px]:max-w-[470px] min-[570px]:max-w-[590px] min-[670px]:max-w-[100%] flex overflow-hidden whitespace-nowrap min-[440px]:gap-8 min-[1px]:gap-4"
-          >
-            <div class="card active-card bg-opacity-5 inline-flex">
-              <div class="px-[25px] py-[20px]">
-                <p id="hour" class="text-[12px]">3PM</p>
-                <h1
-                  id="temperature"
-                  class="min-[1px]:text-2xl min-[1px]:mt-4 min-[470px]:text-4xl min-[470px]:mt-8 min-[670px]:text-5xl font-bold min-[670px]:mt-12"
-                >
-                  28 °C
-                </h1>
-                <p id="feels-like" class="min-[1px]:text-[12px] min-[670px]:text-[16px] mt-2">
-                  Feels like 30°C
-                </p>
-              </div>
-            </div>
-
-            <div class="card mt-10 bg-opacity-5 inline-flex self-center">
-              <div class="p-[15px] gap-5 flex-col flex">
-                <p id="hour" class="text-xs">3PM</p>
-                <h1 id="temperature" class="min-[1px]:text-2xl min-[670px]:text-3xl font-bold">
-                  28 °C
-                </h1>
-              </div>
-            </div>
-            <div class="card mt-10 bg-opacity-5 inline-flex self-center">
-              <div class="p-[15px] gap-5 flex-col flex">
-                <p id="hour" class="text-xs">3PM</p>
-                <h1 id="temperature" class="min-[1px]:text-2xl min-[670px]:text-3xl font-bold">
-                  28 °C
-                </h1>
-              </div>
-            </div>
-            <div class="card mt-10 bg-opacity-5 inline-flex self-center">
-              <div class="p-[15px] gap-5 flex-col flex">
-                <p id="hour" class="text-xs">3PM</p>
-                <h1 id="temperature" class="min-[1px]:text-2xl min-[670px]:text-3xl font-bold">
-                  28 °C
-                </h1>
-              </div>
-            </div>
-            <div class="card mt-10 bg-opacity-5 inline-flex self-center">
-              <div class="p-[15px] gap-5 flex-col flex">
-                <p id="hour" class="text-xs">3PM</p>
-                <h1 id="temperature" class="min-[1px]:text-2xl min-[670px]:text-3xl font-bold">
-                  28 °C
-                </h1>
-              </div>
-            </div>
-            <div class="card mt-10 bg-opacity-5 inline-flex self-center">
-              <div class="p-[15px] gap-5 flex-col flex">
-                <p id="hour" class="text-xs">3PM</p>
-                <h1 id="temperature" class="min-[1px]:text-2xl min-[670px]:text-3xl font-bold">
-                  28 °C
-                </h1>
-              </div>
-            </div>
-            <div class="card mt-10 bg-opacity-5 inline-flex self-center">
-              <div class="p-[15px] gap-5 flex-col flex">
-                <p id="hour" class="text-xs">3PM</p>
-                <h1 id="temperature" class="min-[1px]:text-2xl min-[670px]:text-3xl font-bold">
-                  28 °C
-                </h1>
-              </div>
-            </div>
-          </section>
+            class="cards-block mt-[-15px] pb-[10px] cards min-[1px]:max-w-[300px] min-[440px]:max-w-[440px] min-[470px]:max-w-[470px] min-[570px]:max-w-[590px] min-[670px]:max-w-[100%] flex overflow-x-hidden whitespace-nowrap min-[440px]:gap-8 min-[1px]:gap-4"
+          ></section>
 
           <div
-            class="buttons flex self-center min-[1px]:gap-8 min-[1px]:mt-[15px] min-[400px]:mt-[26px] min-[670px]:gap-5 min-[670px]:pl-[55px] min-[670px]:mt-[66px]"
+            class="buttons flex self-center min-[1px]:gap-8 min-[1px]:mt-[15px] min-[400px]:mt-[42px] min-[670px]:gap-5 min-[670px]:pl-[55px]"
           >
             <div
               id="button-left"
