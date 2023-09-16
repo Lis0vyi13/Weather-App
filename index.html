@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="dist/output.css" />
   </head>
   <body>
-    <div class="wrapper">
+    <div class="wrapper overflow-hidden">
       <div class="container max-w-screen-xl mx-auto overflow-x-hidden px-4">
         <aside
           class="min-[1px]:mt-4 min-[400px]:mt-8 gap-10 flex justify-between min-[1px]:mb-8 min-[500px]:mb-0"
@@ -40,14 +40,14 @@
               </g>
             </svg>
             <h2
-              id="weather"
+              id="curr-weather"
               class="capitalize min-[1px]:text-xl min-[450px]:text-2xl min-[570px]:text-4xl"
             >
               Fog
             </h2>
             <h3
               id="city"
-              class="min-[1px]:text-[15px] min-[450px]:text-[17px] min-[570px]:text-[19px] mt-1"
+              class="capitalize min-[1px]:text-[15px] min-[450px]:text-[17px] min-[570px]:text-[19px] mt-1"
             >
               Poltava
             </h3>
@@ -179,28 +179,11 @@
         </p>
 
         <main
-          class="flex min-[300px]:items-center min-[1px]:flex-col min-[1px]:justify-center min-[670px]:flex-row min-[670px]:justify-between"
+          class="flex min-[300px]:items-center min-[1px]:flex-col min-[1px]:justify-center min-[670px]:flex-row"
         >
           <section
-            class="cards-block mt-[-15px] pb-[10px] cards min-[1px]:max-w-[300px] min-[440px]:max-w-[440px] min-[470px]:max-w-[470px] min-[570px]:max-w-[590px] min-[670px]:max-w-[100%] flex overflow-x-hidden whitespace-nowrap min-[440px]:gap-8 min-[1px]:gap-4"
+            class="cards-block relative mt-[-15px] pb-[10px] cards min-[1px]:max-w-[300px] min-[440px]:max-w-[440px] min-[470px]:max-w-[445px] min-[570px]:max-w-[565px] min-[670px]:max-w-[100%] overflow-x-hidden whitespace-nowrap min-[440px]:gap-8 min-[1px]:gap-4"
           ></section>
-
-          <div
-            class="buttons flex self-center min-[1px]:gap-8 min-[1px]:mt-[15px] min-[400px]:mt-[32px] min-[670px]:gap-5 min-[670px]:mt-[42px] min-[670px]:pl-[55px]"
-          >
-            <div
-              id="button-left "
-              class="cursor-pointer bg-white bg-opacity-20 rounded-[50%] px-4 py-2 hover:bg-white hover:text-black duration-300 transition-all"
-            >
-              &lt;
-            </div>
-            <div
-              id="button-right"
-              class="cursor-pointer bg-white bg-opacity-20 rounded-[50%] px-4 py-2 hover:bg-white duration-300 hover:text-black"
-            >
-              &gt;
-            </div>
-          </div>
         </main>
       </div>
     </div>

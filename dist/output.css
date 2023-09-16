@@ -584,6 +584,10 @@ video {
   pointer-events: none;
 }
 
+.relative {
+  position: relative;
+}
+
 .mx-auto {
   margin-left: auto;
   margin-right: auto;
@@ -661,8 +665,8 @@ video {
   align-self: flex-start;
 }
 
-.self-center {
-  align-self: center;
+.overflow-hidden {
+  overflow: hidden;
 }
 
 .overflow-x-hidden {
@@ -671,10 +675,6 @@ video {
 
 .whitespace-nowrap {
   white-space: nowrap;
-}
-
-.rounded-\[50\%\] {
-  border-radius: 50%;
 }
 
 .rounded-md {
@@ -686,10 +686,6 @@ video {
   background-color: rgb(255 255 255 / var(--tw-bg-opacity));
 }
 
-.bg-opacity-20 {
-  --tw-bg-opacity: 0.2;
-}
-
 .p-2 {
   padding: 0.5rem;
 }
@@ -697,11 +693,6 @@ video {
 .px-4 {
   padding-left: 1rem;
   padding-right: 1rem;
-}
-
-.py-2 {
-  padding-top: 0.5rem;
-  padding-bottom: 0.5rem;
 }
 
 .pb-\[10px\] {
@@ -741,12 +732,6 @@ video {
 .outline-none {
   outline: 2px solid transparent;
   outline-offset: 2px;
-}
-
-.transition-all {
-  transition-property: all;
-  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-  transition-duration: 150ms;
 }
 
 .duration-300 {
@@ -798,6 +783,7 @@ body {
   overflow-x: hidden;
   font-family: "Kamerik 105";
   font-weight: 500;
+  scroll-behavior: smooth;
   color: #fff;
   min-height: 100vh;
 }
@@ -837,6 +823,7 @@ body::before {
 }
 
 .card div {
+  align-self: center;
   padding: 15px;
   gap: 20px;
 }
@@ -852,6 +839,7 @@ body::before {
 
 .active-card div {
   padding: 20px 25px;
+  gap: 0;
 }
 
 @media (min-width: 1px) {
@@ -861,6 +849,19 @@ body::before {
 
   .card div #temperature {
     font-size: 26px;
+  }
+
+  .card div #weather {
+    font-size: 12px;
+    text-transform: capitalize;
+    white-space: wrap;
+  }
+
+  .active-card div #weather {
+    font-size: 16px;
+    margin-top: 8px;
+    text-transform: capitalize;
+    white-space: wrap;
   }
 
   .active-card div #temperature {
@@ -875,15 +876,29 @@ body::before {
 
   .active-card {
     min-width: 140px;
+    height: 190px;
+  }
+
+  .cards-block {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    justify-items: center;
+  }
+}
+
+@media (min-width: 480px) {
+  .cards-block {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (min-width: 595px) {
+  .cards-block {
+    grid-template-columns: repeat(4, 1fr);
   }
 }
 
 @media (min-width: 670px) {
-  #feels-like {
-    font-size: 16px;
-    margin-top: 8px;
-  }
-
   .card div #temperature {
     font-size: 30px;
   }
@@ -894,10 +909,17 @@ body::before {
 
   .active-card div #temperature {
     font-size: 48px;
+    margin-top: 10px;
   }
 
   .active-card {
     min-width: 179px;
+  }
+}
+
+@media (min-width: 1220px) {
+  .cards-block {
+    grid-template-columns: repeat(8, 1fr);
   }
 }
 
@@ -979,16 +1001,6 @@ body::before {
   background-color: rgb(0 0 0 / var(--tw-bg-opacity));
 }
 
-.hover\:bg-white:hover {
-  --tw-bg-opacity: 1;
-  background-color: rgb(255 255 255 / var(--tw-bg-opacity));
-}
-
-.hover\:text-black:hover {
-  --tw-text-opacity: 1;
-  color: rgb(0 0 0 / var(--tw-text-opacity));
-}
-
 .hover\:underline:hover {
   text-decoration-line: underline;
 }
@@ -1000,10 +1012,6 @@ body::before {
 
   .min-\[1px\]\:mt-4 {
     margin-top: 1rem;
-  }
-
-  .min-\[1px\]\:mt-\[15px\] {
-    margin-top: 15px;
   }
 
   .min-\[1px\]\:w-\[127px\] {
@@ -1024,10 +1032,6 @@ body::before {
 
   .min-\[1px\]\:gap-4 {
     gap: 1rem;
-  }
-
-  .min-\[1px\]\:gap-8 {
-    gap: 2rem;
   }
 
   .min-\[1px\]\:text-4xl {
@@ -1066,10 +1070,6 @@ body::before {
 @media (min-width: 400px) {
   .min-\[400px\]\:mt-8 {
     margin-top: 2rem;
-  }
-
-  .min-\[400px\]\:mt-\[32px\] {
-    margin-top: 32px;
   }
 
   .min-\[400px\]\:text-\[13px\] {
@@ -1113,8 +1113,8 @@ body::before {
 }
 
 @media (min-width: 470px) {
-  .min-\[470px\]\:max-w-\[470px\] {
-    max-width: 470px;
+  .min-\[470px\]\:max-w-\[445px\] {
+    max-width: 445px;
   }
 }
 
@@ -1125,8 +1125,8 @@ body::before {
 }
 
 @media (min-width: 570px) {
-  .min-\[570px\]\:max-w-\[590px\] {
-    max-width: 590px;
+  .min-\[570px\]\:max-w-\[565px\] {
+    max-width: 565px;
   }
 
   .min-\[570px\]\:text-2xl {
@@ -1154,10 +1154,6 @@ body::before {
 }
 
 @media (min-width: 670px) {
-  .min-\[670px\]\:mt-\[42px\] {
-    margin-top: 42px;
-  }
-
   .min-\[670px\]\:w-\[unset\] {
     width: unset;
   }
@@ -1168,18 +1164,6 @@ body::before {
 
   .min-\[670px\]\:flex-row {
     flex-direction: row;
-  }
-
-  .min-\[670px\]\:justify-between {
-    justify-content: space-between;
-  }
-
-  .min-\[670px\]\:gap-5 {
-    gap: 1.25rem;
-  }
-
-  .min-\[670px\]\:pl-\[55px\] {
-    padding-left: 55px;
   }
 
   .min-\[670px\]\:text-\[18px\] {
