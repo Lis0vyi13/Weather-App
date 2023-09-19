@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="dist/output.css" />
   </head>
   <body>
-    <div class="wrapper overflow-hidden">
+    <div class="wrapper">
       <div class="container max-w-screen-xl mx-auto overflow-x-hidden px-4">
         <aside
           class="min-[1px]:mt-4 min-[400px]:mt-8 gap-10 flex justify-between min-[1px]:mb-8 min-[500px]:mb-0"
@@ -40,14 +40,14 @@
               </g>
             </svg>
             <h2
-              id="curr-weather"
+              id="weather"
               class="capitalize min-[1px]:text-xl min-[450px]:text-2xl min-[570px]:text-4xl"
             >
               Fog
             </h2>
             <h3
               id="city"
-              class="capitalize min-[1px]:text-[15px] min-[450px]:text-[17px] min-[570px]:text-[19px] mt-1"
+              class="min-[1px]:text-[15px] capitalize min-[450px]:text-[17px] min-[570px]:text-[19px] mt-1"
             >
               Poltava
             </h3>
@@ -179,11 +179,33 @@
         </p>
 
         <main
-          class="flex min-[300px]:items-center min-[1px]:flex-col min-[1px]:justify-center min-[670px]:flex-row"
+          class="flex relative min-[300px]:items-center min-[1px]:flex-row min-[774px]:justify-between"
         >
-          <section
-            class="cards-block relative mt-[-15px] pb-[10px] cards min-[1px]:max-w-[300px] min-[440px]:max-w-[440px] min-[470px]:max-w-[445px] min-[570px]:max-w-[565px] min-[670px]:max-w-[100%] overflow-x-hidden whitespace-nowrap min-[440px]:gap-8 min-[1px]:gap-4"
-          ></section>
+          <div
+            class="cards-wrapper min-[300px]:ml-[10px] min-[350px]:ml-[25px] min-[390px]:ml-[45px] min-[420px]:ml-[65px] min-[440px]:ml-[0px] min-[600px]:ml-[-75px] min-[670px]:ml-[-90px] min-[600px]:max-w[65%] min-[600px]:justify-center min-[700px]:justify-normal min-[700px]:ml-0 min-[700px]:max-w-[92%] min-[771px]:max-w-[90%] max-[774px]:flex min-[774px]:max-w-[84%] min-[774px]:ml-0 overflow-hidden"
+          >
+            <section
+              style="left: 0px"
+              class="cards-block relative duration-500 flex flex-nowrap mt-[-15px] pb-[10px] cards min-[1px]:max-w-[300px] min-[1px]:gap-4 min-[440px]:max-w-[440px] min-[440px]:gap-8 min-[470px]:max-w-[470px] min-[570px]:max-w-[70%] min-[700px]:max-w-[100%] min-[740px]:max-w-[84%] min-[780px]:max-w-[87%] whitespace-nowrap"
+            ></section>
+          </div>
+
+          <div
+            class="buttons absolute max-[766px]:mb-3 min-[1px]:bottom-[-70px] min-[500px]:bottom-[-50px] min-[774px]:bottom-[unset] min-[774px]:right-0 min-[1px]:left-1/2 min-[774px]:left-[unset] max-[777px]:p-0 max-[774px]:translate-x-[-40%] flex self-center min-[1px]:gap-8 min-[1px]:mt-[15px] min-[774px]:mt-[42px] min-[774px]:pl-[55px]"
+          >
+            <div
+              id="button-left"
+              class="cursor-pointer bg-white bg-opacity-20 rounded-[50%] px-4 py-2 hover:bg-white hover:text-black duration-300 transition-all"
+            >
+              &lt;
+            </div>
+            <div
+              id="button-right"
+              class="cursor-pointer bg-white bg-opacity-20 rounded-[50%] px-4 py-2 hover:bg-white duration-300 hover:text-black"
+            >
+              &gt;
+            </div>
+          </div>
         </main>
       </div>
     </div>
