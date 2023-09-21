@@ -633,14 +633,6 @@ video {
   display: inline-flex;
 }
 
-.w-\[100\%\] {
-  width: 100%;
-}
-
-.min-w-\[100\%\] {
-  min-width: 100%;
-}
-
 .max-w-screen-xl {
   max-width: 1280px;
 }
@@ -685,32 +677,12 @@ video {
   align-self: center;
 }
 
-.overflow-auto {
-  overflow: auto;
-}
-
 .overflow-hidden {
   overflow: hidden;
 }
 
-.overflow-scroll {
-  overflow: scroll;
-}
-
-.overflow-x-auto {
-  overflow-x: auto;
-}
-
 .overflow-x-hidden {
   overflow-x: hidden;
-}
-
-.overflow-x-clip {
-  overflow-x: clip;
-}
-
-.overflow-x-visible {
-  overflow-x: visible;
 }
 
 .whitespace-nowrap {
@@ -1333,8 +1305,8 @@ body::before {
 }
 
 @media (min-width: 740px) {
-  .min-\[740px\]\:max-w-\[84\%\] {
-    max-width: 84%;
+  .min-\[740px\]\:max-w-\[100\%\] {
+    max-width: 100%;
   }
 }
 

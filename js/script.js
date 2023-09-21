@@ -169,35 +169,6 @@ function toggleActiveCard(cards, currentIndex, newIndex) {
   cards[newIndex].querySelector("#feels-like").style.display = "block";
 }
 
-// SLIDER ON DRAG
-let isDown = false;
-let startX;
-let scrlLeft;
-
-cardsBlock.addEventListener("mousedown", (e) => {
-  isDown = true;
-  startX = e.pageX - cardsBlock.offsetLeft;
-  scrlLeft = cardsBlock.scrollLeft;
-  console.log(startX);
-});
-
-cardsBlock.addEventListener("mouseleave", () => {
-  isDown = false;
-});
-
-cardsBlock.addEventListener("mouseup", () => {
-  isDown = false;
-});
-
-cardsBlock.addEventListener("mousemove", (e) => {
-  if (!isDown) return;
-  e.preventDefault();
-  let endX = e.pageX - cardsBlock.offsetLeft;
-  let move = endX - startX;
-  console.log(move);
-  cardsBlock.scrollLeft = scrlLeft - move;
-});
-
 window.onload = () =>
   setTimeout(() => {
     preloader.classList.remove("show");
