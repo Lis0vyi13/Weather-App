@@ -1072,16 +1072,12 @@ body::before {
 }
 
 @media (min-width: 1px) {
-  .min-\[1px\]\:bottom-\[-70px\] {
-    bottom: -70px;
+  .min-\[1px\]\:bottom-\[-60px\] {
+    bottom: -60px;
   }
 
   .min-\[1px\]\:left-1\/2 {
     left: 50%;
-  }
-
-  .min-\[1px\]\:bottom-\[-60px\] {
-    bottom: -60px;
   }
 
   .min-\[1px\]\:mb-8 {
@@ -1237,10 +1233,6 @@ body::before {
 }
 
 @media (min-width: 570px) {
-  .min-\[570px\]\:max-w-\[70\%\] {
-    max-width: 70%;
-  }
-
   .min-\[570px\]\:text-2xl {
     font-size: 1.5rem;
     line-height: 2rem;
@@ -1262,6 +1254,12 @@ body::before {
 
   .min-\[570px\]\:text-\[19px\] {
     font-size: 19px;
+  }
+}
+
+@media (min-width: 576px) {
+  .min-\[576px\]\:max-w-\[70\%\] {
+    max-width: 70%;
   }
 }
 

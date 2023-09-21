@@ -1,5 +1,4 @@
 // ELEMENTS
-// 15 + 32
 let preloader = document.querySelector("#loaderContainer");
 let changeLocation = document.querySelector("#change-location");
 let searchBlock = document.querySelector(".search");
@@ -14,7 +13,6 @@ let activeCard =
   '<div class="card active-card inline-flex"><div>  <p id="hour" class="text-[12px]">3PM</p>  <h1 id="temperature">28 °C</h1>  <p id="feels-like">Feels like 30°C</p></div></div>';
 let cardsBlock = document.querySelector(".cards-block");
 let buttons = document.querySelectorAll(".buttons");
-
 // DATA
 let weather = document.querySelector("#weather");
 let city = document.querySelector("#city");
@@ -25,7 +23,20 @@ let airPressure = document.querySelector("#air-pressure");
 let rainChance = document.querySelector("#rain-chance");
 let windSpeed = document.querySelector("#wind-speed");
 const days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
-
+const month = [
+  "January",
+  "February",
+  "March",
+  "April",
+  "May",
+  "June",
+  "July",
+  "August",
+  "September",
+  "October",
+  "November",
+  "December",
+];
 document.addEventListener("DOMContentLoaded", function () {
   updatePage();
   updateData();
@@ -43,7 +54,6 @@ async function getData(cityName) {
     return data;
   } catch (error) {
     errorBlock.classList.add("show");
-    return null; // Возвращаем null, чтобы указать на ошибку
   }
 }
 
@@ -95,6 +105,10 @@ async function updateData(cityName = city.textContent.trim()) {
   city.textContent = cityName;
   currentTemperature.textContent = temperatures[0].textContent;
   day.textContent =
+    month[new Date().getMonth()] +
+    " " +
+    new Date().getDate() +
+    ", " +
     days[new Date(data.list[activeCardIndex].dt_txt.split(" ")[activeCardIndex]).getDay()];
   humidity.textContent = data.list[activeCardIndex].main.humidity + "%";
   airPressure.textContent = data.list[activeCardIndex].main.pressure + " PS";
@@ -106,13 +120,23 @@ let count = 0;
 let value = 0;
 buttons.forEach(function (button) {
   button.addEventListener("click", async function (e) {
-    const data = await getData(city.textContent.trim());
+    await getData(city.textContent.trim());
+
     const cards = document.querySelectorAll(".card");
     const activeCardIndex = [...cards].findIndex((i) => i.classList.contains("active-card"));
-    const cardsBlock = document.querySelector(".cards-block");
-    if (window.innerWidth >= 670) {
+    const windowWidth = window.innerWidth;
+
+    function resetSlider() {
+      cardsBlock.style.left = 0 + "px";
+      if (cards[activeCardIndex + 1].classList.contains("active-card")) {
+        toggleActiveCard(cards, activeCardIndex + 1, 0);
+      }
+      count = 0;
+    }
+
+    if (windowWidth >= 670) {
       value = 143;
-    } else if (window.innerWidth >= 440) {
+    } else if (windowWidth >= 440) {
       value = 132;
     } else {
       value = 116;
@@ -121,25 +145,24 @@ buttons.forEach(function (button) {
     if (e.target == document.querySelector("#button-left")) {
       if (activeCardIndex == 0) return;
       count += value;
-      toggleActiveCard(cards, activeCardIndex, activeCardIndex - 1, data);
+      window.addEventListener("resize", resetSlider);
+      toggleActiveCard(cards, activeCardIndex, activeCardIndex - 1);
     } else if (e.target == document.querySelector("#button-right")) {
       count -= value;
-
+      window.addEventListener("resize", resetSlider);
       if (activeCardIndex == 32) {
         count = 0;
-        toggleActiveCard(cards, activeCardIndex, 0, data);
+        toggleActiveCard(cards, activeCardIndex, 0);
       } else {
-        toggleActiveCard(cards, activeCardIndex, activeCardIndex + 1, data);
+        toggleActiveCard(cards, activeCardIndex, activeCardIndex + 1);
       }
     }
-
     cardsBlock.style.left = count + "px";
   });
 });
 
 function toggleActiveCard(cards, currentIndex, newIndex) {
   cards[currentIndex].classList.toggle("active-card");
-
   cards[currentIndex].querySelector("#feels-like").style.display = "none";
 
   cards[newIndex].classList.toggle("active-card");
@@ -167,22 +190,38 @@ searchInput.addEventListener("input", (e) => {
   searchIcon.querySelector("path").classList.toggle("toBlack", hasValue);
 });
 
+searchInput.addEventListener("keydown", async (e) => {
+  if (e.key === "Enter") {
+    sendData();
+  }
+});
+
 searchButton.addEventListener("click", async (e) => {
   e.preventDefault();
+  sendData();
+});
+
+function getCityInfo() {
+  updatePage(searchInput.value);
+  updateData(searchInput.value);
+}
+
+async function sendData() {
   if (searchInput.value !== "") {
-    preloader.classList.add("show");
     const result = await loadData(searchInput.value);
 
+    preloader.classList.add("show");
     if (result) {
       getCityInfo();
+      if (errorBlock.classList.contains("show")) errorBlock.classList.remove("show");
     } else {
-      errorBlock.classList.remove("show");
+      errorBlock.classList.add("show");
     }
     setTimeout(() => {
       preloader.classList.toggle("show");
     }, 200);
   }
-});
+}
 
 async function loadData(cityName) {
   try {
@@ -190,29 +229,5 @@ async function loadData(cityName) {
     return data !== null;
   } catch (error) {
     return false;
-  }
-}
-
-searchInput.addEventListener("keydown", async (e) => {
-  if (e.key === "Enter") {
-    preloader.classList.add("show");
-    const result = await loadData(searchInput.value);
-
-    if (result) {
-      getCityInfo();
-    } else {
-      errorBlock.classList.remove("show");
-    }
-    setTimeout(() => {
-      preloader.classList.toggle("show");
-    }, 200);
-  }
-});
-
-function getCityInfo() {
-  if (searchInput.value !== "") {
-    if (!updatePage(searchInput.value) && !updateData(searchInput.value)) {
-      errorBlock.classList.remove("show");
-    }
   }
 }
