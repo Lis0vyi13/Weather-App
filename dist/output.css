@@ -1080,6 +1080,10 @@ body::before {
     left: 50%;
   }
 
+  .min-\[1px\]\:bottom-\[-60px\] {
+    bottom: -60px;
+  }
+
   .min-\[1px\]\:mb-8 {
     margin-bottom: 2rem;
   }
