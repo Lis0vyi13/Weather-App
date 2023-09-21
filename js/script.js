@@ -37,10 +37,12 @@ const month = [
   "November",
   "December",
 ];
+
 document.addEventListener("DOMContentLoaded", function () {
   updatePage();
   updateData();
 });
+
 // SERVER
 async function getData(cityName) {
   try {
@@ -59,13 +61,7 @@ async function getData(cityName) {
 
 async function updatePage(cityName = city.textContent.trim()) {
   const data = await getData(cityName);
-  if (!data) {
-    console.error("Invalid data");
-    return;
-  }
-
-  console.log(data);
-
+  dataError(data);
   while (cardsBlock.firstChild) {
     cardsBlock.removeChild(cardsBlock.firstChild);
   }
@@ -80,10 +76,7 @@ async function updatePage(cityName = city.textContent.trim()) {
 
 async function updateData(cityName = city.textContent.trim()) {
   const data = await getData(cityName);
-  if (!data) {
-    console.error("Invalid data");
-    return;
-  }
+  dataError(data);
 
   let hours = document.querySelectorAll("#hour");
   let temperatures = document.querySelectorAll("#temperature");
@@ -116,6 +109,13 @@ async function updateData(cityName = city.textContent.trim()) {
   windSpeed.textContent = data.list[activeCardIndex].wind.speed + " km/h";
 }
 
+function dataError(data) {
+  if (!data) {
+    console.error("Invalid data");
+    return;
+  }
+}
+// SLIDER
 let count = 0;
 let value = 0;
 buttons.forEach(function (button) {
@@ -209,24 +209,21 @@ function getCityInfo() {
 async function sendData() {
   if (searchInput.value !== "") {
     const result = await loadData(searchInput.value);
-
-    preloader.classList.add("show");
     if (result) {
+      preloader.classList.toggle("show");
+      setTimeout(() => {
+        preloader.classList.toggle("show");
+      }, 200);
       getCityInfo();
       if (errorBlock.classList.contains("show")) errorBlock.classList.remove("show");
-    } else {
-      errorBlock.classList.add("show");
     }
-    setTimeout(() => {
-      preloader.classList.toggle("show");
-    }, 200);
   }
 }
 
 async function loadData(cityName) {
   try {
     const data = await getData(cityName);
-    return data !== null;
+    return data;
   } catch (error) {
     return false;
   }
