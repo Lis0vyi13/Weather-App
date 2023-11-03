@@ -155,6 +155,7 @@ function changeDate(data, activeCardIndex) {
     ", " +
     days[new Date(data.list[activeCardIndex].dt_txt).getDay()];
 }
+
 let count = 0;
 let value = 0;
 buttons.forEach(function (button) {
@@ -186,13 +187,19 @@ buttons.forEach(function (button) {
       changeDate(data, activeCardIndex - 1);
 
       count += value;
-      window.addEventListener("resize", resetSliderOnResize);
+      window.addEventListener("resize", function () {
+        resetSliderOnResize();
+        changeDate(data, 0);
+      });
       toggleActiveCard(cards, activeCardIndex, activeCardIndex - 1);
     } else if (e.target == document.querySelector("#button-right")) {
       count -= value;
       changeDate(data, activeCardIndex + 1);
 
-      window.addEventListener("resize", resetSliderOnResize);
+      window.addEventListener("resize", function () {
+        resetSliderOnResize();
+        changeDate(data, 0);
+      });
       if (activeCardIndex == 32) {
         count = 0;
         toggleActiveCard(cards, activeCardIndex, 0);
