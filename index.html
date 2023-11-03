@@ -2,84 +2,71 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0" />
     <title>Weather app</title>
-    <link rel="stylesheet" href="dist/output.css" />
+    <link
+      rel="stylesheet"
+      href="dist/output.css" />
   </head>
   <body>
     <div class="wrapper">
       <div class="container max-w-screen-xl mx-auto overflow-x-hidden px-4">
         <aside
-          class="min-[1px]:mt-4 min-[400px]:mt-8 gap-10 flex justify-between min-[1px]:mb-8 min-[500px]:mb-0"
-        >
+          class="min-[1px]:mt-4 min-[400px]:mt-8 gap-10 flex justify-between min-[1px]:mb-8 min-[500px]:mb-0">
           <section>
-            <svg
-              fill="#fff"
-              height="88px"
-              width="88px"
-              version="1.1"
-              id="Layer_1"
-              xmlns="http://www.w3.org/2000/svg"
-              xmlns:xlink="http://www.w3.org/1999/xlink"
-              viewBox="0 0 297 297"
-              xml:space="preserve"
-              stroke="#fff"
-            >
-              <g id="SVGRepo_bgCarrier" stroke-width="0" />
-
-              <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round" />
-
-              <g id="SVGRepo_iconCarrier">
-                <g>
-                  <g>
-                    <path
-                      d="M297,139.163c0-33.519-27.27-60.789-60.79-60.789c-0.893,0-1.787,0.02-2.682,0.06 c-8.61-26.178-33.172-44.378-61.425-44.378c-30.303,0-56.359,20.938-63.042,50.197c-17.548,8.536-31.254,23.998-37.287,43.22 c-1.327-0.079-2.655-0.119-3.978-0.119C30.413,127.354,0,157.766,0,195.148c0,37.383,30.413,67.796,67.795,67.796h145.729 c37.382,0,67.795-30.413,67.795-67.796c0-4.717-0.487-9.322-1.409-13.77C290.937,169.985,297,155.079,297,139.163z M213.524,243.936H67.795c-26.901,0-48.787-21.886-48.787-48.788c0-26.901,21.886-48.787,48.787-48.787 c3.106,0,6.252,0.306,9.352,0.909c2.493,0.488,5.08-0.048,7.178-1.482c2.098-1.434,3.534-3.648,3.988-6.149 c4.592-25.291,26.607-43.649,52.346-43.649s47.754,18.357,52.346,43.649c0.454,2.5,1.891,4.715,3.988,6.149 c2.098,1.434,4.684,1.97,7.178,1.482c3.1-0.602,6.246-0.909,9.352-0.909c26.901,0,48.787,21.886,48.787,48.787 C262.31,222.05,240.424,243.936,213.524,243.936z M271.949,160.821c-11.8-20.007-33.565-33.467-58.426-33.467 c-1.323,0-2.651,0.04-3.978,0.119c-9.33-29.731-37.004-50.49-68.886-50.49c-3.054,0-6.069,0.194-9.033,0.565 c7.699-14.73,23.096-24.484,40.476-24.484c22.093,0,40.99,15.757,44.931,37.466c0.454,2.501,1.891,4.716,3.99,6.15 c2.098,1.433,4.686,1.969,7.179,1.481c2.651-0.517,5.344-0.779,8.007-0.779c23.039,0,41.782,18.743,41.782,41.781 C277.991,146.936,275.886,154.361,271.949,160.821z"
-                    />
-                  </g>
-                </g>
-              </g>
-            </svg>
+            <img
+              id="weather-img"
+              src="https://openweathermap.org/img/wn/02n@2x.png"
+              alt="#" />
             <h2
               id="weather"
-              class="capitalize min-[1px]:text-xl min-[450px]:text-2xl min-[570px]:text-4xl"
-            >
+              class="capitalize min-[1px]:text-xl min-[450px]:text-2xl min-[570px]:text-4xl">
               Fog
             </h2>
             <h3
               id="city"
-              class="min-[1px]:text-[15px] capitalize min-[450px]:text-[17px] min-[570px]:text-[19px] mt-1"
-            >
+              class="min-[1px]:text-[15px] capitalize min-[450px]:text-[17px] min-[570px]:text-[19px] mt-1">
               Poltava
             </h3>
             <h1
               id="current-temperature"
-              class="min-[1px]:text-4xl min-[450px]:text-5xl min-[570px]:text-6xl font-bold mt-5"
-            >
+              class="min-[1px]:text-4xl min-[450px]:text-5xl min-[570px]:text-6xl font-bold mt-5">
               28 °C
             </h1>
-            <a id="change-location" href="#" class="link inline-flex gap-1 mt-5 hover:underline"
-              ><img src="icons/location.svg" alt="#" width="16px" height="16px" />
+            <a
+              id="change-location"
+              href="#"
+              class="link inline-flex gap-1 mt-5 hover:underline"
+              ><img
+                src="icons/location.svg"
+                alt="#"
+                width="16px"
+                height="16px" />
               <p class="min-[1px]:text-[12px] min-[450px]:text-[14px]">Change Location</p></a
             >
             <div class="search duration-300 flex mt-2 opacity-0 pointer-events-none">
               <input
                 class="min-[1px]:w-[127px] min-[670px]:w-[unset] search-input box-border outline-none p-2 rounded-md text-black text-[12px] placeholder:text-[12px]"
-                placeholder="City name..."
-              />
+                placeholder="City name..." />
               <button
-                class="search-button duration-300 p-2 bg-white rounded-md ml-[-20px] hover:bg-black"
-              >
+                class="search-button duration-300 p-2 bg-white rounded-md ml-[-20px] hover:bg-black">
                 <svg
                   class="duration-300"
                   width="20px"
                   height="20px"
                   viewBox="0 0 24 24"
                   fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <g id="SVGRepo_bgCarrier" stroke-width="0" />
+                  xmlns="http://www.w3.org/2000/svg">
+                  <g
+                    id="SVGRepo_bgCarrier"
+                    stroke-width="0" />
 
-                  <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round" />
+                  <g
+                    id="SVGRepo_tracerCarrier"
+                    stroke-linecap="round"
+                    stroke-linejoin="round" />
 
                   <g id="SVGRepo_iconCarrier">
                     <path
@@ -87,31 +74,32 @@
                       stroke="#000000"
                       stroke-width="2"
                       stroke-linecap="round"
-                      stroke-linejoin="round"
-                    />
+                      stroke-linejoin="round" />
                   </g>
                 </svg>
               </button>
             </div>
             <p
-              class="mt-2 text-red-600 error text-[12px] opacity-0 pointer-events-none duration-300"
-            >
+              class="mt-2 text-red-600 error text-[12px] opacity-0 pointer-events-none duration-300">
               Invalid city name
             </p>
           </section>
           <section class="flex flex-col gap-10 mt-7">
             <div class="option flex gap-3">
-              <img class="self-start" src="icons/humidity.svg" width="28px" height="28px" alt="#" />
+              <img
+                class="self-start"
+                src="icons/humidity.svg"
+                width="28px"
+                height="28px"
+                alt="#" />
               <div class="flex gap-y-1 flex-col">
                 <h5
-                  class="min-[1px]:text-[12px] min-[400px]:text-[13px] min-[570px]:text-[14px] tracking-wide"
-                >
+                  class="min-[1px]:text-[12px] min-[400px]:text-[13px] min-[570px]:text-[14px] tracking-wide">
                   Humidity
                 </h5>
                 <h2
                   class="font-bold min-[1px]:text-[18px] min-[400px]:text-xl min-[570px]:text-2xl"
-                  id="humidity"
-                >
+                  id="humidity">
                   50%
                 </h2>
               </div>
@@ -122,50 +110,53 @@
                 src="icons/barometer.svg"
                 width="28px"
                 height="28px"
-                alt="#"
-              />
+                alt="#" />
               <div class="flex gap-y-1 flex-col">
                 <h5
-                  class="min-[1px]:text-[12px] min-[400px]:text-[13px] min-[570px]:text-[14px] tracking-wide"
-                >
+                  class="min-[1px]:text-[12px] min-[400px]:text-[13px] min-[570px]:text-[14px] tracking-wide">
                   Air Pressure
                 </h5>
                 <h2
                   class="font-bold min-[1px]:text-[18px] min-[400px]:text-xl min-[570px]:text-2xl"
-                  id="air-pressure"
-                >
+                  id="air-pressure">
                   1009.484 PS
                 </h2>
               </div>
             </div>
             <div class="option flex gap-3">
-              <img class="self-start" src="icons/rain.svg" width="28px" height="28px" alt="#" />
+              <img
+                class="self-start"
+                src="icons/rain.svg"
+                width="28px"
+                height="28px"
+                alt="#" />
               <div class="flex gap-y-1 flex-col">
                 <h5
-                  class="min-[1px]:text-[12px] min-[400px]:text-[13px] min-[570px]:text-[14px] tracking-wide"
-                >
+                  class="min-[1px]:text-[12px] min-[400px]:text-[13px] min-[570px]:text-[14px] tracking-wide">
                   Chance of Rain
                 </h5>
                 <h2
                   class="font-bold min-[1px]:text-[18px] min-[400px]:text-xl min-[570px]:text-2xl"
-                  id="rain-chance"
-                >
+                  id="rain-chance">
                   0%
                 </h2>
               </div>
             </div>
             <div class="option flex gap-3">
-              <img class="self-start" src="icons/wind.svg" width="28px" height="28px" alt="#" />
+              <img
+                class="self-start"
+                src="icons/wind.svg"
+                width="28px"
+                height="28px"
+                alt="#" />
               <div class="flex gap-y-1 flex-col">
                 <h5
-                  class="min-[1px]:text-[12px] min-[400px]:text-[13px] min-[570px]:text-[14px] tracking-wide"
-                >
+                  class="min-[1px]:text-[12px] min-[400px]:text-[13px] min-[570px]:text-[14px] tracking-wide">
                   Wind Speed
                 </h5>
                 <h2
                   class="font-bold min-[1px]:text-[18px] min-[400px]:text-xl min-[570px]:text-2xl"
-                  id="wind-speed"
-                >
+                  id="wind-speed">
                   1.4 km/h
                 </h2>
               </div>
@@ -173,43 +164,41 @@
           </section>
         </aside>
         <p class="inline-flex self-top cursor-pointer hover:underline">
-          <span class="min-[1px]:text-[14px] min-[670px]:text-[18px] font-bold" id="day"
+          <span
+            class="min-[1px]:text-[14px] min-[670px]:text-[18px] font-bold"
+            id="day"
             >Thursday</span
           >
         </p>
 
         <main
-          class="flex relative min-[300px]:items-center min-[1px]:flex-row min-[774px]:justify-between"
-        >
+          class="flex relative min-[300px]:items-center min-[1px]:flex-row min-[774px]:justify-between">
           <div
-            class="cards-wrapper min-[300px]:ml-[10px] min-[350px]:ml-[25px] min-[390px]:ml-[45px] min-[420px]:ml-[65px] min-[440px]:ml-[0px] min-[600px]:ml-[-75px] min-[670px]:ml-[-90px] min-[600px]:max-w[65%] min-[600px]:justify-center min-[700px]:justify-normal min-[700px]:ml-0 min-[700px]:max-w-[92%] min-[771px]:max-w-[90%] max-[774px]:flex min-[774px]:max-w-[84%] min-[774px]:ml-0 overflow-hidden"
-          >
+            class="cards-wrapper min-[300px]:ml-[10px] min-[350px]:ml-[25px] min-[390px]:ml-[45px] min-[420px]:ml-[65px] min-[440px]:ml-[0px] min-[600px]:ml-[-75px] min-[670px]:ml-[-90px] min-[600px]:max-w[65%] min-[600px]:justify-center min-[700px]:justify-normal min-[700px]:ml-0 min-[700px]:max-w-[92%] min-[771px]:max-w-[90%] max-[774px]:flex min-[774px]:max-w-[84%] min-[774px]:ml-0 overflow-hidden">
             <section
               style="left: 0px"
-              class="cards-block relative duration-500 flex flex-nowrap mt-[-15px] pb-[10px] cards min-[1px]:max-w-[300px] min-[1px]:gap-4 min-[440px]:max-w-[440px] min-[440px]:gap-8 min-[470px]:max-w-[470px] min-[576px]:max-w-[70%] min-[700px]:max-w-[100%] min-[740px]:max-w-[100%] min-[780px]:max-w-[87%] whitespace-nowrap"
-            ></section>
+              class="cards-block relative duration-500 flex flex-nowrap mt-[-15px] pb-[10px] cards min-[1px]:max-w-[300px] min-[1px]:gap-4 min-[440px]:max-w-[440px] min-[440px]:gap-8 min-[470px]:max-w-[470px] min-[576px]:max-w-[70%] min-[700px]:max-w-[100%] min-[740px]:max-w-[100%] min-[780px]:max-w-[87%] whitespace-nowrap"></section>
           </div>
 
           <div
-            class="buttons absolute max-[766px]:mb-3 min-[1px]:bottom-[-60px] min-[500px]:bottom-[-50px] min-[774px]:bottom-[unset] min-[774px]:right-0 min-[1px]:left-1/2 min-[774px]:left-[unset] max-[777px]:p-0 max-[774px]:translate-x-[-40%] flex self-center min-[1px]:gap-8 min-[1px]:mt-[15px] min-[774px]:mt-[42px] min-[774px]:pl-[55px]"
-          >
+            class="buttons absolute max-[766px]:mb-3 min-[1px]:bottom-[-60px] min-[500px]:bottom-[-50px] min-[774px]:bottom-[unset] min-[774px]:right-0 min-[1px]:left-1/2 min-[774px]:left-[unset] max-[777px]:p-0 max-[774px]:translate-x-[-40%] flex self-center min-[1px]:gap-8 min-[1px]:mt-[15px] min-[774px]:mt-[42px] min-[774px]:pl-[55px]">
             <div
               id="button-left"
-              class="cursor-pointer bg-white bg-opacity-20 rounded-[50%] px-4 py-2 hover:bg-white hover:text-black duration-300 transition-all"
-            >
+              class="cursor-pointer bg-white bg-opacity-20 rounded-[50%] px-4 py-2 hover:bg-white hover:text-black duration-300 transition-all">
               &lt;
             </div>
             <div
               id="button-right"
-              class="cursor-pointer bg-white bg-opacity-20 rounded-[50%] px-4 py-2 hover:bg-white duration-300 hover:text-black"
-            >
+              class="cursor-pointer bg-white bg-opacity-20 rounded-[50%] px-4 py-2 hover:bg-white duration-300 hover:text-black">
               &gt;
             </div>
           </div>
         </main>
       </div>
     </div>
-    <div class="opacity-0 pointer-events-none show" id="loaderContainer">
+    <div
+      class="opacity-0 pointer-events-none show"
+      id="loaderContainer">
       <div id="loaderGif"></div>
     </div>
     <script src="js/script.js"></script>

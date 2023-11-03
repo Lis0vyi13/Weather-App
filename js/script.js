@@ -37,9 +37,11 @@ const month = [
   "November",
   "December",
 ];
-
-document.addEventListener("DOMContentLoaded", function () {
-  updatePage();
+if (localStorage.getItem("city")) {
+  city.textContent = localStorage.getItem("city");
+}
+document.addEventListener("DOMContentLoaded", async function () {
+  await updatePage();
   updateData();
 });
 
@@ -61,6 +63,8 @@ async function getData(cityName) {
 
 async function updatePage(cityName = city.textContent.trim()) {
   const data = await getData(cityName);
+  console.log(data);
+
   dataError(data);
   while (cardsBlock.firstChild) {
     cardsBlock.removeChild(cardsBlock.firstChild);
@@ -73,17 +77,42 @@ async function updatePage(cityName = city.textContent.trim()) {
     }
   }
 }
+function changeBackground(data) {
+  dataError(data);
+  const root = document.documentElement;
+  const weatherInfo = data.list[0].weather[0];
+  const dayTime = weatherInfo.icon.at(-1);
+  const weather = weatherInfo.main;
+  let imgName = dayTime == "n" ? "night-" + weather : weather;
+  const arr = ["Snow", "Rain", "Drizzle", "Thunderstorm", "Clouds", "Clear"];
+  arr.slice(0, 4).forEach(function (item) {
+    if (imgName.slice(imgName.length - item.length) == item) {
+      imgName = item;
+      return;
+    }
+  });
+  if (!imgName.startsWith("night-") && !arr.some((item) => item === imgName)) {
+    imgName = "default";
+  }
 
+  root.style.setProperty("--background", `url(../img/${imgName}.jpg) no-repeat`);
+}
 async function updateData(cityName = city.textContent.trim()) {
   const data = await getData(cityName);
   dataError(data);
 
+  const currWeather = data.list[0].weather[0];
+  changeBackground(data);
+  const img = document.querySelector("#weather-img");
+  img.src = `https://openweathermap.org/img/wn/${currWeather.icon}@2x.png`;
+  img.alt = currWeather.description;
+
+  let cards = document.querySelectorAll(".card");
   let hours = document.querySelectorAll("#hour");
   let temperatures = document.querySelectorAll("#temperature");
   let feelsLike = document.querySelectorAll("#feels-like");
-
   let cardLength = data.list.length;
-  let cards = document.querySelectorAll(".card");
+
   for (let i = 0; i < cardLength; i++) {
     if (i > 0) {
       feelsLike[i].style.display = "none";
@@ -94,7 +123,7 @@ async function updateData(cityName = city.textContent.trim()) {
   }
 
   let activeCardIndex = [...cards].findIndex((i) => i.classList.contains("active-card"));
-  weather.textContent = data.list[0].weather[0].description;
+  weather.textContent = currWeather.description;
   city.textContent = cityName;
   currentTemperature.textContent = temperatures[0].textContent;
   day.textContent =
@@ -126,7 +155,7 @@ buttons.forEach(function (button) {
     const activeCardIndex = [...cards].findIndex((i) => i.classList.contains("active-card"));
     const windowWidth = window.innerWidth;
 
-    function resetSlider() {
+    function resetSliderOnResize() {
       cardsBlock.style.left = 0 + "px";
       if (cards[activeCardIndex + 1].classList.contains("active-card")) {
         toggleActiveCard(cards, activeCardIndex + 1, 0);
@@ -145,11 +174,11 @@ buttons.forEach(function (button) {
     if (e.target == document.querySelector("#button-left")) {
       if (activeCardIndex == 0) return;
       count += value;
-      window.addEventListener("resize", resetSlider);
+      window.addEventListener("resize", resetSliderOnResize);
       toggleActiveCard(cards, activeCardIndex, activeCardIndex - 1);
     } else if (e.target == document.querySelector("#button-right")) {
       count -= value;
-      window.addEventListener("resize", resetSlider);
+      window.addEventListener("resize", resetSliderOnResize);
       if (activeCardIndex == 32) {
         count = 0;
         toggleActiveCard(cards, activeCardIndex, 0);
@@ -169,11 +198,19 @@ function toggleActiveCard(cards, currentIndex, newIndex) {
   cards[newIndex].querySelector("#feels-like").style.display = "block";
 }
 
+function resetSlider() {
+  const cards = document.querySelectorAll(".card");
+  const activeCardIndex = [...cards].findIndex((i) => i.classList.contains("active-card"));
+  cardsBlock.style.left = 0 + "px";
+  if (cards[activeCardIndex + 1].classList.contains("active-card")) {
+    toggleActiveCard(cards, activeCardIndex + 1, 0);
+  }
+}
+
 window.onload = () =>
   setTimeout(() => {
     preloader.classList.remove("show");
   }, 200);
-
 // INTERFACE
 changeLocation.addEventListener("click", (e) => {
   e.preventDefault();
@@ -182,7 +219,6 @@ changeLocation.addEventListener("click", (e) => {
   }
   searchBlock.classList.toggle("show");
 });
-
 searchInput.addEventListener("input", (e) => {
   const hasValue = searchInput.value !== "";
   searchButton.classList.toggle("toBlack", hasValue);
@@ -214,6 +250,8 @@ async function sendData() {
         preloader.classList.toggle("show");
       }, 200);
       getCityInfo();
+      resetSlider();
+      localStorage.setItem("city", searchInput.value);
       if (errorBlock.classList.contains("show")) errorBlock.classList.remove("show");
     }
   }

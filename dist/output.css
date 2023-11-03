@@ -813,20 +813,29 @@ video {
   font-weight: 100;
 }
 
+:root {
+  --background: url("../img/default.jpg") no-repeat;
+}
+
 html {
-  overflow: hidden;
-  height: 100%;
+  min-height: -moz-fit-content;
+  min-height: fit-content;
 }
 
 body {
-  overflow: hidden;
-  height: 100%;
+  min-height: -moz-fit-content;
+  min-height: fit-content;
+  overflow-x: hidden;
   position: relative;
   font-family: "Kamerik 105";
   font-weight: 500;
   scroll-behavior: smooth;
   color: #fff;
-  min-height: 100vh;
+}
+
+#weather-img {
+  position: relative;
+  left: -15px;
 }
 
 body::after {
@@ -836,9 +845,8 @@ body::after {
   left: 0;
   right: 0;
   bottom: 0;
-  background: url("../img/bg.jpg") no-repeat;
+  background: var(--background);
   background-size: cover;
-  background-attachment: fixed;
   background-position: center center;
   z-index: 2;
 }
@@ -852,6 +860,15 @@ body::before {
   bottom: 0;
   background: rgba(0, 0, 0, 0.4);
   z-index: 3;
+}
+
+.wrapper {
+  min-height: -moz-fit-content;
+  min-height: fit-content;
+}
+
+.rain {
+  background: url("../img/rain.png") no-repeat;
 }
 
 .container {
