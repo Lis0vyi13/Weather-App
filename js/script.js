@@ -63,7 +63,6 @@ async function getData(cityName) {
 
 async function updatePage(cityName = city.textContent.trim()) {
   const data = await getData(cityName);
-  console.log(data);
 
   dataError(data);
   while (cardsBlock.firstChild) {
@@ -77,26 +76,7 @@ async function updatePage(cityName = city.textContent.trim()) {
     }
   }
 }
-function changeBackground(data) {
-  dataError(data);
-  const root = document.documentElement;
-  const weatherInfo = data.list[0].weather[0];
-  const dayTime = weatherInfo.icon.at(-1);
-  const weather = weatherInfo.main;
-  let imgName = dayTime == "n" ? "night-" + weather : weather;
-  const arr = ["Snow", "Rain", "Drizzle", "Thunderstorm", "Clouds", "Clear"];
-  arr.slice(0, 4).forEach(function (item) {
-    if (imgName.slice(imgName.length - item.length) == item) {
-      imgName = item;
-      return;
-    }
-  });
-  if (!imgName.startsWith("night-") && !arr.some((item) => item === imgName)) {
-    imgName = "default";
-  }
 
-  root.style.setProperty("--background", `url(../img/${imgName}.jpg) no-repeat`);
-}
 async function updateData(cityName = city.textContent.trim()) {
   const data = await getData(cityName);
   dataError(data);
@@ -138,18 +118,48 @@ async function updateData(cityName = city.textContent.trim()) {
   windSpeed.textContent = data.list[activeCardIndex].wind.speed + " km/h";
 }
 
+function changeBackground(data) {
+  dataError(data);
+  const root = document.documentElement;
+  const weatherInfo = data.list[0].weather[0];
+  const dayTime = weatherInfo.icon.at(-1);
+  const weather = weatherInfo.main;
+  let imgName = dayTime == "n" ? "night-" + weather : weather;
+  const arr = ["Snow", "Rain", "Drizzle", "Thunderstorm", "Clouds", "Clear"];
+  arr.slice(0, 4).forEach(function (item) {
+    if (imgName.slice(imgName.length - item.length) == item) {
+      imgName = item;
+      return;
+    }
+  });
+  if (!imgName.startsWith("night-") && !arr.some((item) => item === imgName)) {
+    imgName = "default";
+  }
+
+  root.style.setProperty("--background", `url(../img/${imgName}.jpg) no-repeat`);
+}
+
 function dataError(data) {
   if (!data) {
     console.error("Invalid data");
     return;
   }
 }
+
 // SLIDER
+function changeDate(data, activeCardIndex) {
+  day.textContent =
+    month[new Date().getMonth()] +
+    " " +
+    new Date(data.list[activeCardIndex].dt_txt).getDate() +
+    ", " +
+    days[new Date(data.list[activeCardIndex].dt_txt).getDay()];
+}
 let count = 0;
 let value = 0;
 buttons.forEach(function (button) {
   button.addEventListener("click", async function (e) {
-    await getData(city.textContent.trim());
+    const data = await getData(city.textContent.trim());
 
     const cards = document.querySelectorAll(".card");
     const activeCardIndex = [...cards].findIndex((i) => i.classList.contains("active-card"));
@@ -173,11 +183,15 @@ buttons.forEach(function (button) {
 
     if (e.target == document.querySelector("#button-left")) {
       if (activeCardIndex == 0) return;
+      changeDate(data, activeCardIndex - 1);
+
       count += value;
       window.addEventListener("resize", resetSliderOnResize);
       toggleActiveCard(cards, activeCardIndex, activeCardIndex - 1);
     } else if (e.target == document.querySelector("#button-right")) {
       count -= value;
+      changeDate(data, activeCardIndex + 1);
+
       window.addEventListener("resize", resetSliderOnResize);
       if (activeCardIndex == 32) {
         count = 0;
